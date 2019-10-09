@@ -18,6 +18,9 @@ foreach(glob(__DIR__ . '/csv/A10/*.csv') AS $csvFile) {
     }
     while($line = fgetcsv($fh, 2048)) {
         $data = array_combine($header, $line);
+        if($data['縣市'] === '總計') {
+            continue;
+        }
         $data['年度'] = $p['filename'];
         $result = array();
         foreach($keyPool AS $key) {
